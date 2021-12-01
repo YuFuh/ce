@@ -89,3 +89,101 @@ public static void main(String[] args) {
 	}
 	
 }
+
+public class Demo4 extends Thread{
+	
+	@Override
+	public void run() {
+		System.out.println(Thread.currentThread().getName());
+	}
+	
+	public static void main(String[] args) {
+		Demo4 demo4 = new Demo4();
+		Thread thread1 = new Thread(demo4,"x");
+		Thread thread2 = new Thread(demo4,"y");
+		
+		//这里可以看出，start()使用后是子线程
+		//run()使用后调用则是主线程
+		thread1.start();
+		thread2.run();
+	}
+
+public class Myrunnable implements Runnable{
+
+	int count = 0;
+	@Override
+	public void run() {
+		try {
+			while(count<20) {
+				Thread.sleep(100);
+				count++;
+				System.out.println(Thread.currentThread()+"-----"+count);
+			}
+			
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+public class ThreadDemo {
+	
+	public static void main(String[] args) {
+		for(int i = 0 ; i < 10 ;i ++) {
+			MyThread thread = new MyThread();
+			thread.start();
+		}
+	}
+}
+class MyThread extends Thread{
+	@Override
+	public void run() {
+		for(int i = 0; i<3;i++) {
+			System.out.println(Thread.currentThread()+"- 正在运行！");
+		}
+	}
+}
+
+public class ThreadDemo1 extends Thread{
+	@Override
+	public void run() {
+		System.out.println("我是线程1");
+		super.run();
+	}
+}
+
+import java.util.Date;
+
+public class Demo {
+
+	public static void main(String[] args) throws ClassNotFoundException {
+		//long time=System.currentTimeMillis();
+		//System.out.println(time/3600000/24/365);
+		
+		Date ft = new Date();
+		//SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		//System.out.println(date.format(ft));
+		System.out.printf("%tc%n",ft);
+		
+		
+		Class clazz = Cc.class;
+		
+		Object h = new Cc();
+		
+		clazz = h.getClass();
+		System.out.println(clazz);
+		
+		clazz = String.class;
+		System.out.println(clazz);
+	       
+	       clazz = "javaTest".getClass();
+	       System.out.println(clazz);
+	       
+	       clazz = Class.forName("java.lang.String");
+	       System.out.println(clazz);
+	       
+	       System.out.println();
+	       
+	}
+	
+}
